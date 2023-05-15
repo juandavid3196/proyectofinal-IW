@@ -1,3 +1,95 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/*principal interface*/
+
+.main-title {
+    text-align: center;
+    font-size: 30px;
+}
+
+.top {
+    height:50px;
+    margin-bottom: 35px;
+}
+
+.btn-add {
+    background-color: blue;
+    height: 100%;
+    padding: 0 8px;
+    width: 170px;
+}
+
+.btn-option {
+    height: 100%;
+    padding: 0 8px;
+    background-color: blue;
+    width: 160px;
+}
+
+.bottom {
+    background-color: rgb(141, 192, 237);
+}
+
+/*Sidebar*/
+
+.perfil-box {
+    height: 250px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil-img {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: brown;
+}
+
+.routes-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 15px;
+}
+
+.routes-box button {
+    border: 1px solid black;
+    height: 50px;
+    width: 100%;
+}
+
+.section-box {
+    width: 100%;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid black;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }

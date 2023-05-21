@@ -4,12 +4,12 @@ import React from 'react'
 
 const inventarios = () => {
 	return (
-		<div className='flex'>
+		<div className='flex h-[100vh]'>
 		<div className="sidebar w-1/4 bg-gray-400">
 			<Sidebar/>
 		</div>
 		<main className='w-full pt-[25px] pr-[60px] pl-[60px]'>
-			<h1 className='main-title mb-[80px]'>Gestion de Inventarios</h1>
+			<h1 className='main-title mb-[80px]'>Gestión de Inventarios</h1>
 			<div className='table-container w-3/4 w-full'>
 				<div className='top flex justify-between items-center'>
 					<select className='btn-option'>
@@ -21,6 +21,7 @@ const inventarios = () => {
 				<div className='bottom'>
 							<InventoryTable/>
 				</div>
+				<div className='flex justify-end p-5'> <span>Saldo</span></div>
 			</div>
 		</main>
 		</div>

@@ -4,7 +4,7 @@ import React from 'react'
 
 const materiales = () => {
 	return (
-		<div className='flex'>
+		<div className='flex h-[100vh]'>
 			<div className="sidebar w-1/4 bg-gray-400">
 				<Sidebar />
 			</div>

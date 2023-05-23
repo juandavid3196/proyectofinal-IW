@@ -1,6 +1,5 @@
 import { Sidebar } from '@componentsSidebar';
 import { UserTable } from '@componentsUserTable';
-import React from 'react'
 
 const usuarios = () => {
 	return (

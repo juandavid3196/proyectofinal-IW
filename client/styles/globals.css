@@ -128,3 +128,19 @@ thead {
   th {
     background-color: #f2f2f2;
   }
+
+
+/*login Page*/
+
+.btn-login {
+    border: 1px solid #9cc3ff;
+    font-size: 14px;
+    padding: 8px 6px;
+    border-radius: 4px;
+    background-color: #029cda;
+    color: #f2f2f2;
+}
+
+ .btn-login:hover {
+    background-color: #2b68db;
+}

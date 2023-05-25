@@ -1,7 +1,22 @@
 import { Sidebar } from '@componentsSidebar';
 import { UserTable } from '@componentsUserTable';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 const usuarios = () => {
+
+	const {data:session,status} = useSession();
+	
+    if(status== 'loading') return <div>...Loading</div>;
+
+    if(!session){
+		return (
+		<>
+			<p>Necesita autenticacion para acceder a esta URL</p>
+			<Link href="/">Ir a Home</Link>
+		</>
+		)
+    }
 	return (
 		<div className='flex h-[100vh]'>
 			<div className="sidebar w-1/4 bg-gray-400">

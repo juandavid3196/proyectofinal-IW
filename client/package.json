@@ -12,6 +12,7 @@
     "@apollo/client": "^3.7.14",
     "@apollo/server": "^4.7.1",
     "@as-integrations/next": "^2.0.0",
+    "@next-auth/prisma-adapter": "^1.0.6",
     "@prisma/client": "^4.14.1",
     "@types/node": "^20.2.2",
     "@types/react": "18.2.6",

@@ -2,14 +2,25 @@ import { Resolver } from "types";
 
 const resolvers : Resolver = {
     Query: {
-      users : async (paren,args,context)=> {
+    users : async (parent,args,context)=> {
        const users = await context.db.user.findMany({
-        include :  {
-            role :true,
+        include : {
+            role:true,
         }
        });
        return users;
     },
+    user: async (parent,args,context)=> {
+        const users = await context.db.user.findUnique({
+         where : {
+            email : args.email,
+         },
+         include : {
+            role:true
+         }
+        });
+        return users;
+     },
     materials: async (parent,args,context) => {
         const materials = await context.db.material.findMany();
         return materials;

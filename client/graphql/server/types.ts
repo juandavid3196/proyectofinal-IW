@@ -18,8 +18,6 @@ type Role {
   id : ID
   name : Enum_RoleName
   users : [User]
-  createdAt: DateTime
-  updateAt: DateTime
 }
 
 enum Enum_RoleName {

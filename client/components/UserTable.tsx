@@ -1,13 +1,10 @@
-import {useQuery} from '@apollo/client'
-import { User } from '@prisma/client';
+import {useQuery} from '@apollo/client';
 import { GET_USERS } from 'graphql/client/users';
-import React from 'react'
+import React from 'react';
 
 const UserTable = () => {
 
 	const {data,loading,error} = useQuery(GET_USERS);
-
-	console.log(data);
 	return (
 		<div className='table-container'>
 			{ error ? (<p>Error</p>) : loading ? (<p>...Loading</p>) : 

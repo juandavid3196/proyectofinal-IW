@@ -5,8 +5,9 @@ import React from 'react'
 
 const UserTable = () => {
 
-	const {data,loading,error} = useQuery<{users:User[]}>(GET_USERS);
+	const {data,loading,error} = useQuery(GET_USERS);
 
+	console.log(data);
 	return (
 		<div className='table-container'>
 			{ error ? (<p>Error</p>) : loading ? (<p>...Loading</p>) : 
@@ -21,12 +22,12 @@ const UserTable = () => {
 					</tr>
 				</thead>
 				<tbody>
-				{data?.users.map((item:User) => (
+				{data?.users.map((item:any) => (
 					<tr key={`user_${item.id}`}>
 						<td>{item.id}</td>
-						<td>{item.name}</td>
+						<td>{item.emailVerified?.toLocaleString()}</td>
 						<td>{item.email}</td>
-						<td>{item.password}</td>
+						<td>{item.role?.name}</td>
 					</tr>
 					))
 				}

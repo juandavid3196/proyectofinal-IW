@@ -3,29 +3,49 @@ import { Resolver } from "types";
 const resolvers : Resolver = {
     Query: {
       users : async (paren,args,context)=> {
-       const users = await context.db.user.findMany()
+       const users = await context.db.user.findMany({
+        include :  {
+            role :true,
+        }
+       });
        return users;
     },
-      user : async (parent,args,context)=> {
-        const user = await context.db.user.findFirst({
-            where : {
-                email: args.email,
-            },
-        });
-        return user;
-    }
+    materials: async (parent,args,context) => {
+        const materials = await context.db.material.findMany();
+        return materials;
+    },
+    inventories: async (parent,args,context) => {
+        const inventories = await context.db.inventory.findMany();
+        const specificInventories = inventories.filter(inventory => inventory.matId === args.id);
+        return specificInventories;
+    },
+
     },
     Mutation : {
-    createUser : async (parent,args,context) => {
-        const {name,email,password} = args;
-        const newUser = await context.db.user.create({
+    createMaterial : async (parent,args,context) => {
+        const {name,balance,createdBy} = args;
+        const newMaterial = await context.db.material.create({
             data : {
                 name,
-                email,
-                password
+                balance,
+                createdBy
+
             },
         });
-        return newUser; 
+        return newMaterial; 
+        },
+    createInventory : async (parent,args,context) => {
+        const {input,output,createdBy,material} = args;
+        const newInventory = await context.db.inventory.create({
+            data : {
+                input,
+                output,
+                createdBy,
+                material
+
+            },
+        });
+        return newInventory; 
         }
     }
   };

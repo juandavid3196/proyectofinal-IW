@@ -22,5 +22,14 @@ query Inventories($inventoriesId: String!) {
 }
 `;
 
+const CREATE_MATERIAL = gql`
+mutation CreateMaterial($name: String!, $balance: Int!) {
+  createMaterial(name: $name, balance: $balance) {
+  id
+  name
+  }
+}
+`;
 
-export {GET_MATERIALS,GET_INVENTORIES};
+
+export {GET_MATERIALS,GET_INVENTORIES,CREATE_MATERIAL};

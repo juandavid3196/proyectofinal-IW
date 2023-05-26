@@ -3,9 +3,9 @@ import React from 'react'
 const InventoryForm = () => {
     return (
         <div className="form-container">
-            <form className='material-form'>
+            <form className='material-form gap-[25px]'>
                 <div className="item-box">
-                    <select name="" id="">
+                    <select name="" id="" className='select-form'>
                         <option value="">Entrada</option>
                         <option value="">Salida</option>
                     </select>

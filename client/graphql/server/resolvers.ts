@@ -1,4 +1,5 @@
-import { Resolver } from "types";
+import { getSession } from "next-auth/react";
+import { Resolver,Context } from "types";
 
 const resolvers : Resolver = {
     Query: {
@@ -34,30 +35,56 @@ const resolvers : Resolver = {
     },
     Mutation : {
     createMaterial : async (parent,args,context) => {
-        const {name,balance,createdBy} = args;
+
+        const {name,balance} = args;
+        const {req} = context;
+        const session = await getSession({ req });
+
         const newMaterial = await context.db.material.create({
             data : {
                 name,
                 balance,
-                createdBy
-
+                createdBy : {
+                    connect: {
+                        email: session?.user?.email ?? '',
+                      },
+                }
             },
         });
         return newMaterial; 
         },
+        
     createInventory : async (parent,args,context) => {
         const {input,output,createdBy,material} = args;
+        const {req} = context;
+        const session = await getSession({ req });
         const newInventory = await context.db.inventory.create({
             data : {
                 input,
                 output,
-                createdBy,
+                createdBy: {
+                    connect: {
+                        email: session?.user?.email ?? '',
+                      },
+                },
                 material
 
             },
         });
         return newInventory; 
-        }
+        },
+        editUserRole: async (parent,args,context) => {
+            const {userId,role} = args;
+            const existingUser = await context.db.user.findUnique({ where: { id: userId } });
+            if (!existingUser) {
+                throw new Error('User not found');
+            }
+            const updatedUser = await context.db.user.update({
+                    where: { id: userId },
+                    data: { role },
+                  });  
+            return updatedUser;         
+        },
     }
   };
 

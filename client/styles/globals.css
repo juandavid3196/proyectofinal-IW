@@ -157,7 +157,6 @@ thead {
 .material-form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 100%;
 }
 .item-box {
@@ -178,4 +177,13 @@ thead {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+/*inventory Form*/
+
+.select-form {
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgb(87, 87, 255);
 }

@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client';
+import Prueba from '@componentsprueba';
 import { Material } from '@prisma/client';
 import { GET_MATERIALS } from 'graphql/client/materials';
 

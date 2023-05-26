@@ -53,8 +53,9 @@ type Inventory {
   }
 
   type Mutation {
-    createMaterial(name:String!,balance:Int,createdBy:String):Material
+    createMaterial(name:String!,balance:Int!):Material
     createInventory(input:Int!,output:Int,createdBy:String,material:String):Inventory
+    editUserRole(userId: ID!, role: Role!): User
   }
 `;
 

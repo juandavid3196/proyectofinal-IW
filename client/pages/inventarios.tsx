@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client';
+import InventoryForm from '@componentsInventoryForm';
 import { InventoryTable } from '@componentsInventoryTable';
+import { Modal } from '@componentsModal';
 import PrivateRoute from '@componentsPrivateRoute';
 import { Sidebar } from '@componentsSidebar';
 import { Material } from '@prisma/client';
@@ -7,6 +9,8 @@ import { GET_MATERIALS } from 'graphql/client/materials';
 import React, { ChangeEvent, useState } from 'react'
 
 const inventarios = () => {
+	const [openModal, setOpenModal] = useState<boolean>(false);
+
 	const { data, loading, error } = useQuery<{ materials: Material[] }>(GET_MATERIALS, {
 		fetchPolicy: 'network-only',
 	});
@@ -35,7 +39,14 @@ const inventarios = () => {
 									))
 									}
 								</select>)}
-							<button className='btn-add'>Agregar Movimiento</button>
+							<button className='btn-add' onClick={() => setOpenModal(true)}>Agregar Movimiento</button>
+							<Modal
+								open={openModal}
+								setOpen={setOpenModal}
+								modalTitle='Nuevo Registro'
+								>
+								<InventoryForm />
+							</Modal>
 						</div>
 						<div className='bottom'>
 							{id && <InventoryTable id={id} />}

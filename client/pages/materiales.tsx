@@ -1,9 +1,13 @@
+import MaterialForm from '@componentsMaterialForm';
 import { MaterialTable } from '@componentsMaterialTable';
+import { Modal } from '@componentsModal';
+import PrivateComponent from '@componentsPrivateComponent';
 import PrivateRoute from '@componentsPrivateRoute';
 import { Sidebar } from '@componentsSidebar';
-import React from 'react'
+import React, { useState } from 'react'
 
 const materiales = () => {
+	const [openModal, setOpenModal] = useState<boolean>(false);
 	return (
 		<PrivateRoute>
 			<div className='flex h-[100vh]'>
@@ -14,7 +18,16 @@ const materiales = () => {
 					<h1 className='main-title mb-[80px]'>Gestión de Materiales</h1>
 					<div className='table-container w-3/4 w-full'>
 						<div className='top flex justify-end items-center'>
-							<button className='btn-add'>Agregar Material</button>
+							<PrivateComponent role={'ADMIN'}>
+								<button className='btn-add' onClick={() => setOpenModal(true)}>Agregar Material</button>
+								<Modal
+									open={openModal}
+									setOpen={setOpenModal}
+									modalTitle='Nuevo Material'
+								>
+									<MaterialForm />
+								</Modal>
+							</PrivateComponent>
 						</div>
 						<div className='bottom'>
 							<MaterialTable />

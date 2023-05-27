@@ -3,11 +3,24 @@ import PrivateRoute from '@componentsPrivateRoute';
 import { Sidebar } from '@componentsSidebar';
 import UserForm from '@componentsUserForm';
 import { UserTable } from '@componentsUserTable';
+import useUserData from 'hooks/useUserData';
+import Link from 'next/link';
 import { useState } from 'react';
 
 
 const usuarios = () => {
 	const [openModal, setOpenModal] = useState<boolean>(false);
+	const {role: userRole} = useUserData();
+	if(userRole == 'USER'){
+		return (
+			<>
+				<div className='flex items-center justify-center flex-col gap-4 h-screen w-full'>
+					<p className='text-5xl text-red-500'>Necesita autenticacion para acceder a esta URL</p>
+					<Link href="/" className='text-2xl text-blue-500'>Ir al Home</Link>
+				</div>		
+			</>
+			)
+	}
 	return (
 			<PrivateRoute>
 			<div className='flex h-[100vh]'>

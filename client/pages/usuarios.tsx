@@ -9,7 +9,7 @@ import { useState } from 'react';
 const usuarios = () => {
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	return (
-		<PrivateRoute>
+			<PrivateRoute>
 			<div className='flex h-[100vh]'>
 				<div className="sidebar w-1/4 bg-gray-400">
 					<Sidebar />
@@ -33,7 +33,7 @@ const usuarios = () => {
 					</div>
 				</main>
 			</div>
-		</PrivateRoute>
+			</PrivateRoute>
 	)
 }
 

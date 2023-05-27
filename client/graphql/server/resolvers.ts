@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import { Resolver,Context } from "types";
+import { Resolver } from "types";
 
 const resolvers : Resolver = {
     Query: {
@@ -72,18 +72,6 @@ const resolvers : Resolver = {
             },
         });
         return newInventory; 
-        },
-        editUserRole: async (parent,args,context) => {
-            const {userId,role} = args;
-            const existingUser = await context.db.user.findUnique({ where: { id: userId } });
-            if (!existingUser) {
-                throw new Error('User not found');
-            }
-            const updatedUser = await context.db.user.update({
-                    where: { id: userId },
-                    data: { role },
-                  });  
-            return updatedUser;         
         },
     }
   };

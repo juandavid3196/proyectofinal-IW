@@ -33,7 +33,7 @@ const inventarios = () => {
 						<div className='top flex justify-between items-center'>
 							{error ? (<p>Error</p>) : loading ? (<p>...Loading</p>) : (
 								<select className='btn-option' value={id} onChange={handleOption}>
-									<option value="">material</option>
+									<option value="">Material</option>
 									{data?.materials.map((item: Material) => (
 										<option value={item.id} key={item.id} >{item.name}</option>
 									))

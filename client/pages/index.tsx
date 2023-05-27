@@ -9,7 +9,7 @@ const HomePage = () => {
     if(status== 'loading') return <div>...Loading</div>;
 
     if(session){
-        router.push('/materiales');
+        router.push('/app');
     }
   return (
     <div className='flex h-screen w-full flex-col items-center justify-center gap-5'>

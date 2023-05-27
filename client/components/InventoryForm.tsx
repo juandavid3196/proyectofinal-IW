@@ -11,7 +11,6 @@ const InventoryForm = () => {
     const handleSubmit = async (event:ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        console.log(value,selectedValue);
         setValue(0);
         setSelectedValue('');
     }

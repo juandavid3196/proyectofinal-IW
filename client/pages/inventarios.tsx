@@ -49,7 +49,7 @@ const inventarios = () => {
 							</Modal>
 						</div>
 						<div className='bottom'>
-							{id && <InventoryTable id={id} />}
+							{id && <InventoryTable idm={id} />}
 						</div>
 						<div className='flex justify-end p-5'> <span>Saldo</span></div>
 					</div>

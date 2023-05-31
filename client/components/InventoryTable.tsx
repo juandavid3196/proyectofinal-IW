@@ -4,14 +4,16 @@ import { GET_INVENTORIES} from 'graphql/client/materials';
 import { Inventory} from '@prisma/client';
 
 interface propsInventory {
- id: String;
+ idm: String;
 }
 
-const InventoryTable = ({id}:propsInventory) => {
+const InventoryTable = ({idm}:propsInventory) => {
 
 	const {data,loading,error} = useQuery<{inventories:Inventory[]}>(GET_INVENTORIES, {
-		variables: { id },
+		variables: { inventoriesId: idm },
 	  });
+
+	  console.log(data);
 
 	return (
 		<div className='table-container w-full'>

@@ -31,6 +31,11 @@ const resolvers : Resolver = {
         const specificInventories = inventories.filter(inventory => inventory.matId === args.id);
         return specificInventories;
     },
+    roles: async (parent,args,context) => {
+        const roles = await context.db.role.findMany();
+        return roles;
+    },
+
 
     },
     Mutation : {
@@ -73,6 +78,18 @@ const resolvers : Resolver = {
         });
         return newInventory; 
         },
+    updateUser: async (parent,args,context) => {
+        const {id,role} = args;
+        const newRole = await context.db.user.update({
+            where: { id },
+            data: { role: {
+                connect: {
+                    id: role
+                }
+            }},
+        })
+        return newRole;
+    },
     }
   };
 

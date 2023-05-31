@@ -12,9 +12,7 @@ const inventarios = () => {
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [balance, setBalance] = useState<Number>(0);
 	const [id, setId] = useState('');
-
-	console.log(balance);
-
+	
 	const { data, loading, error } = useQuery<{ materials: Material[] }>(GET_MATERIALS, {
 		fetchPolicy: 'network-only',
 	});

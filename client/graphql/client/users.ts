@@ -24,4 +24,16 @@ query User($email: String!) {
   }
 }
 `;
-export {GET_USERS,GET_USER};
+
+const UPDATE_USER = gql`
+mutation UpdateUser($updateUserId: ID!, $role: String!) {
+  updateUser(id: $updateUserId, role: $role) {
+    id
+    email
+    role {
+      name
+    }
+  }
+}
+`;
+export {GET_USERS,GET_USER,UPDATE_USER};

@@ -47,12 +47,14 @@ type Inventory {
 
   type Query {
     users: [User]
+    roles: [Role]
     user(email:String!):User
     materials : [Material]
     inventories(id:String!):[Inventory]
   }
 
   type Mutation {
+    updateUser(id:ID!,role:String):User
     createMaterial(name:String!,balance:Int!):Material
     createInventory(input:Int!,output:Int,createdBy:String,material:String):Inventory
   }

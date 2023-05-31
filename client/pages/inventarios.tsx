@@ -10,15 +10,25 @@ import React, { ChangeEvent, useState } from 'react'
 
 const inventarios = () => {
 	const [openModal, setOpenModal] = useState<boolean>(false);
+	const [balance, setBalance] = useState<Number>(0);
+	const [id, setId] = useState('');
+
+	console.log(balance);
 
 	const { data, loading, error } = useQuery<{ materials: Material[] }>(GET_MATERIALS, {
 		fetchPolicy: 'network-only',
 	});
 
-	const [id, setId] = useState('');
-
+	
 	const handleOption = (event: ChangeEvent<HTMLSelectElement>) => {
-		setId(event.target.value);
+		const selectedId = event.target.value;
+  		const selectedMaterial = data?.materials.find((material) => material.id === selectedId);
+		if (selectedMaterial) {
+			setBalance(selectedMaterial.balance);
+		}else{
+			setBalance(0);
+		}
+		setId(selectedId);
 	}
 
 	return (
@@ -34,8 +44,8 @@ const inventarios = () => {
 							{error ? (<p>Error</p>) : loading ? (<p>...Loading</p>) : (
 								<select className='btn-option' value={id} onChange={handleOption}>
 									<option value="">Material</option>
-									{data?.materials.map((item: Material) => (
-										<option value={item.id} key={item.id} >{item.name}</option>
+									{data?.materials?.map((item: Material) => (
+										<option value={item.id} key={item.id}>{item.name}</option>
 									))
 									}
 								</select>)}
@@ -51,7 +61,7 @@ const inventarios = () => {
 						<div className='bottom'>
 							{id && <InventoryTable idm={id} />}
 						</div>
-						<div className='flex justify-end p-5'> <span>Saldo</span></div>
+						<div className='flex justify-end p-5'> <span>Saldo:{balance.toString()}</span></div>
 					</div>
 				</main>
 			</div>

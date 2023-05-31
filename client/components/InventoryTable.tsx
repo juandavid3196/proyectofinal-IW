@@ -13,8 +13,6 @@ const InventoryTable = ({idm}:propsInventory) => {
 		variables: { inventoriesId: idm },
 	  });
 
-	  console.log(data);
-
 	return (
 		<div className='table-container w-full'>
 			{ error ? (<p>Error</p>) : loading ? (<p>...Loading</p>) : 

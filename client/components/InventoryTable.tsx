@@ -13,6 +13,14 @@ const InventoryTable = ({idm}:propsInventory) => {
 		variables: { inventoriesId: idm },
 	  });
 
+	const improveDate = (originalDate:Date) => {
+		const fecha = new Date(originalDate);
+		const dia = fecha.getDate();
+		const mes = fecha.getMonth() + 1; 
+		const anio = fecha.getFullYear();
+		const formattedDate = `${dia}/${mes}/${anio}`;
+		return formattedDate;
+	}
 	return (
 		<div className='table-container w-full'>
 			{ error ? (<p>Error</p>) : loading ? (<p>...Loading</p>) : 
@@ -30,7 +38,7 @@ const InventoryTable = ({idm}:propsInventory) => {
 				{data?.inventories.map((item:Inventory) => (
 					<tr key={`inventory_${item.id}`}>
 						<td>{item.id}</td>
-						<td>{item.createdAt.toLocaleString()}</td>
+						<td>{improveDate(item.createdAt)}</td>
 						<td>{item.input}</td>
 						<td>{item.output}</td>
 					</tr>

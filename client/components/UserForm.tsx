@@ -56,7 +56,7 @@ const UserForm = () => {
             <form className='material-form gap-[25px]' onSubmit={handleSubmit}>
                 <div className="item-box">
                 {error ? (<p>Error</p>) : loading ? (<p>...Loading</p>) : (
-                    <select className='select-form' onChange={handleUser}>
+                    <select className='select-form' onChange={handleUser} required>
                         <option value="">Usuario</option>
                         {data?.users?.map((item: User) => (
                             <option value={item.id} key={item.id}>{item.email}</option>
@@ -65,7 +65,7 @@ const UserForm = () => {
 				    </select>)}
                 </div>
                 <div className='item-box'>
-                    <select  className='select-form' onChange={handleRole}>
+                    <select  className='select-form' onChange={handleRole} required>
                         <option value="">Rol</option>
                         <option value="ADMIN">ADMIN</option>
                         <option value="USER">USER</option>

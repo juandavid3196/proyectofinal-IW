@@ -47,7 +47,7 @@ const inventarios = () => {
 									))
 									}
 								</select>)}
-							<button className='btn-add' onClick={() => setOpenModal(true)}>Agregar Movimiento</button>
+							{id &&	<button className='btn-add' onClick={() => setOpenModal(true)}>Agregar Movimiento</button>}
 							<Modal
 								open={openModal}
 								setOpen={setOpenModal}

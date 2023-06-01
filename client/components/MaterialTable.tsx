@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import Prueba from '@componentsprueba';
 import { Material } from '@prisma/client';
 import { GET_MATERIALS } from 'graphql/client/materials';
 
@@ -10,6 +9,15 @@ const MaterialTable = () => {
 	const {data,loading,error} = useQuery<{materials:Material[]}>(GET_MATERIALS,{
 		fetchPolicy : 'network-only',
 	});
+
+	const improveDate = (originalDate:Date) => {
+		const fecha = new Date(originalDate);
+		const dia = fecha.getDate();
+		const mes = fecha.getMonth() + 1; 
+		const anio = fecha.getFullYear();
+		const formattedDate = `${dia}/${mes}/${anio}`;
+		return formattedDate;
+	}
 	
 	return (
 		<div className='table-container'>
@@ -28,7 +36,7 @@ const MaterialTable = () => {
 				{data?.materials.map((item:Material) => (
 					<tr key={`material_${item.id}`}>
 						<td>{item.id}</td>
-						<td>{item.createdAt.toLocaleString()}</td>
+						<td>{improveDate(item.createdAt)}</td>
 						<td>{item.name}</td>
 						<td>{item.balance}</td>
 					</tr>

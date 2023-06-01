@@ -11,4 +11,4 @@ const userEndPoint = async (req:NextApiRequest,res:NextApiResponse) => {
     }
 }
 
-export default userEndPoint;
+export default userEndPoint

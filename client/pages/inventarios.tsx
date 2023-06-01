@@ -13,9 +13,7 @@ const inventarios = () => {
 	const [balance, setBalance] = useState<Number>(0);
 	const [id, setId] = useState('');
 	
-	const { data, loading, error } = useQuery<{ materials: Material[] }>(GET_MATERIALS, {
-		fetchPolicy: 'network-only',
-	});
+	const { data, loading, error } = useQuery<{ materials: Material[] }>(GET_MATERIALS);
 
 	
 	const handleOption = (event: ChangeEvent<HTMLSelectElement>) => {

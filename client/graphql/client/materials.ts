@@ -23,12 +23,15 @@ query Inventories($inventoriesId: String!) {
 `;
 
 const CREATE_MATERIAL = gql`
-mutation CreateMaterial($name: String!, $balance: Int!) {
-  createMaterial(name: $name, balance: $balance) {
-  id
-  name
+mutation Mutation($name: String!, $balance: Int!, $createdBy: String!) {
+  createMaterial(name: $name, balance: $balance, createdBy: $createdBy) {
+    id
+    balance
+    name
+    createdAt
   }
 }
+
 `;
 
 

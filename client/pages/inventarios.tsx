@@ -53,7 +53,7 @@ const inventarios = () => {
 								setOpen={setOpenModal}
 								modalTitle='Nuevo Registro'
 								>
-								<InventoryForm />
+								<InventoryForm id={id}/>
 							</Modal>
 						</div>
 						<div className='bottom'>

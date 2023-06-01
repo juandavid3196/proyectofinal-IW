@@ -1,13 +1,24 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_MATERIAL } from 'graphql/client/materials';
+import { GET_USERS } from 'graphql/client/users';
+import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React, { ChangeEvent, useState } from 'react'
 
 const MaterialForm = () => {
+  const router = useRouter();
+  const [createMaterial] = useMutation(CREATE_MATERIAL);
+  const { data, loading, error } = useQuery<{ users: User[] }>(GET_USERS);
+  
   const [name, setName] = useState('');
   const [balance, setBalance] = useState(0);
-  const [createMaterial] = useMutation(CREATE_MATERIAL);
   const {data:session} = useSession();
+
+  const getIdUser = () => {
+    const idUser = data?.users.find((item: User) => item.email === session?.user?.email);
+    return idUser?.id;
+  }
  
   const handleSubmit = async (event:ChangeEvent<HTMLFormElement>) => {
      event.preventDefault();
@@ -16,11 +27,13 @@ const MaterialForm = () => {
             variables: {
               name: name,
               balance :balance,
-              createdBy: session?.user?.email || '',
+              createdBy: getIdUser(),
             },
           });
           setName('');
           setBalance(0);
+          router.reload();
+
         } catch (error) {
           console.error(error);
         }

@@ -41,19 +41,17 @@ const resolvers : Resolver = {
     Mutation : {
     createMaterial : async (parent,args,context) => {
 
-        const {name,balance} = args;
-        const {req} = context;
-        const session = await getSession({ req });
-
+        const {name,balance,createdBy} = args;
         const newMaterial = await context.db.material.create({
             data : {
                 name,
                 balance,
                 createdBy : {
                     connect: {
-                        email: session?.user?.email ?? '',
+                        id: createdBy
                       },
-                }
+                },
+
             },
         });
         return newMaterial; 
@@ -61,18 +59,20 @@ const resolvers : Resolver = {
         
     createInventory : async (parent,args,context) => {
         const {input,output,createdBy,material} = args;
-        const {req} = context;
-        const session = await getSession({ req });
         const newInventory = await context.db.inventory.create({
             data : {
                 input,
                 output,
                 createdBy: {
                     connect: {
-                        email: session?.user?.email ?? '',
+                        id: createdBy,
                       },
                 },
-                material
+                material : {
+                    connect : {
+                        id: material,
+                    }
+                }
 
             },
         });
